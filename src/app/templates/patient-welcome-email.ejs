@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to PH Healthcare System</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      .wrapper {
+        max-width: 600px;
+        margin: 30px auto;
+        background: #ffffff;
+        border: 2px solid #b8e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .header {
+        background: #b8e0e0;
+        text-align: center;
+        padding: 20px;
+      }
+      .header h2 {
+        margin: 0;
+        color: #0a2a3a;
+        font-size: 20px;
+      }
+      .content {
+        padding: 30px;
+      }
+      .content h3 {
+        margin-top: 0;
+        color: #000;
+      }
+      .content p {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #333;
+      }
+      .welcome-box {
+        background: #eaf6f6;
+        border-radius: 8px;
+        padding: 25px 20px;
+        text-align: center;
+        margin: 20px 0;
+      }
+      .icon-circle {
+        display: inline-block;
+        width: 65px;
+        height: 65px;
+        line-height: 65px;
+        border-radius: 50%;
+        background: #17a2b8;
+        color: #ffffff;
+        font-size: 32px;
+        margin-bottom: 12px;
+      }
+      .welcome-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #0a2a3a;
+        margin: 8px 0 4px;
+      }
+      .welcome-sub {
+        font-size: 14px;
+        color: #555;
+        margin: 0;
+      }
+      .info-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 14px;
+      }
+      .info-table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #eee;
+      }
+      .info-table td:first-child {
+        color: #666;
+        font-weight: bold;
+        width: 35%;
+      }
+      .info-table td:last-child {
+        color: #0a2a3a;
+      }
+      .features {
+        margin: 20px 0;
+        padding: 0;
+        list-style: none;
+      }
+      .features li {
+        padding: 8px 0 8px 28px;
+        position: relative;
+        font-size: 14px;
+        color: #333;
+      }
+      .features li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 20px;
+        height: 20px;
+        background: #17a34a;
+        color: #ffffff;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      .btn-wrap {
+        text-align: center;
+        margin: 25px 0 10px;
+      }
+      .btn {
+        display: inline-block;
+        background: #17a2b8;
+        color: #ffffff !important;
+        text-decoration: none;
+        padding: 12px 30px;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: bold;
+      }
+      .support {
+        font-size: 13px;
+        color: #666;
+        font-style: italic;
+      }
+      .support a {
+        color: #17a2b8;
+        text-decoration: underline;
+      }
+      .note {
+        font-size: 13px;
+        color: #666;
+        font-style: italic;
+        margin-top: 15px;
+      }
+      .regards {
+        margin-top: 25px;
+        font-size: 14px;
+      }
+      .divider {
+        border-top: 1px solid #ddd;
+        margin: 25px 0;
+      }
+      .footer {
+        text-align: center;
+        padding: 10px 20px 25px;
+      }
+      .footer .brand {
+        font-size: 20px;
+        font-weight: bold;
+        color: #17a2b8;
+        margin-bottom: 10px;
+      }
+      .footer p {
+        font-size: 12px;
+        color: #666;
+        margin: 5px 0;
+      }
+      .footer a {
+        color: #17a2b8;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <h2>Welcome to PH Healthcare System</h2>
+      </div>
+
+      <div class="content">
+        <h3>Hi <%= name %>,</h3>
+        <p>
+          Congratulations! 🎉 <br>Your account has been successfully created and
+          verified. We're excited to welcome you to our healthcare community.
+        </p>
+
+        <div class="welcome-box">
+          <div class="icon-circle">🏥</div>
+          <p class="welcome-title">Your Account is Ready!</p>
+          <p class="welcome-sub">Start managing your health journey with us today.</p>
+        </div>
+
+        <p><strong>Your Account Details:</strong></p>
+        <table class="info-table">
+          <tr>
+            <td>Name</td>
+            <td><%= name %></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><%= email %></td>
+          </tr>
+        </table>
+
+        <p><strong>What you can do with your account:</strong></p>
+        <ul class="features">
+          <li>Book appointments with certified doctors</li>
+          <li>Access your medical records anytime, anywhere</li>
+          <li>Get online consultations from home</li>
+          <li>Manage prescriptions and health reports</li>
+          <li>Receive personalized health reminders</li>
+        </ul>
+
+        <p class="support">
+          Need help getting started? Our support team is here for you.<br />
+          <a href="mailto:support@ph-healthcare-system.com">support@ph-healthcare-system.com</a>
+        </p>
+
+        <p class="note">Note: This is a system generated message. Do not reply.</p>
+
+        <div class="regards">
+          Best Regards,<br />
+          <strong>Team PH Healthcare</strong>
+        </div>
+
+        <div class="divider"></div>
+      </div>
+
+      <div class="footer">
+        <div class="brand">🏥 PH Healthcare System</div>
+        <p>
+          &copy; <%= new Date().getFullYear() %>
+          <a href="https://ph-healthcare-system.com">ph-healthcare-system.com</a>
+          &nbsp;|&nbsp;
+          <a href="mailto:hello@ph-healthcare-system.com">hello@ph-healthcare-system.com</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
