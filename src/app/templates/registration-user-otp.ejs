@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Email Verification Code</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      .wrapper {
+        max-width: 600px;
+        margin: 30px auto;
+        background: #ffffff;
+        border: 2px solid #b8e0e0;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .header {
+        background: #b8e0e0;
+        text-align: center;
+        padding: 20px;
+      }
+      .header h2 {
+        margin: 0;
+        color: #0a2a3a;
+        font-size: 20px;
+      }
+      .content {
+        padding: 30px;
+      }
+      .content h3 {
+        margin-top: 0;
+        color: #000;
+      }
+      .content p {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #333;
+      }
+      .email-badge {
+        display: inline-block;
+        background: #eaf6f6;
+        color: #0a2a3a;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 14px;
+        margin: 4px 0 10px;
+        border: 1px solid #b8e0e0;
+      }
+      .otp-box {
+        background: #eaf6f6;
+        padding: 20px;
+        text-align: center;
+        border-radius: 6px;
+        margin: 20px 0;
+      }
+      .otp-digit {
+        display: inline-block;
+        width: 40px;
+        height: 45px;
+        line-height: 45px;
+        margin: 0 4px;
+        border: 1px solid #17a2b8;
+        border-radius: 6px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #0a2a3a;
+        background: #ffffff;
+      }
+      .support {
+        font-size: 13px;
+        color: #666;
+        font-style: italic;
+      }
+      .support a {
+        color: #17a2b8;
+        text-decoration: underline;
+      }
+      .note {
+        font-size: 13px;
+        color: #666;
+        font-style: italic;
+        margin-top: 15px;
+      }
+      .regards {
+        margin-top: 25px;
+        font-size: 14px;
+      }
+      .divider {
+        border-top: 1px solid #ddd;
+        margin: 25px 0;
+      }
+      .footer {
+        text-align: center;
+        padding: 10px 20px 25px;
+      }
+      .footer .brand {
+        font-size: 20px;
+        font-weight: bold;
+        color: #17a2b8;
+        margin-bottom: 10px;
+      }
+      .footer p {
+        font-size: 12px;
+        color: #666;
+        margin: 5px 0;
+      }
+      .footer a {
+        color: #17a2b8;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <h2>Your Email Verification Code</h2>
+      </div>
+
+      <div class="content">
+        <h3>Hi <%= name %>,</h3>
+        <p>Welcome to <strong>PH Healthcare System</strong>! We're glad to have you on board.</p>
+        <p>
+          You're receiving this email because you signed up using:
+        </p>
+        <p><span class="email-badge">📧 <%= email %></span></p>
+        <p>
+          To complete your registration and activate your account, please verify
+          your email address using the OTP code below.
+        </p>
+
+        <div class="otp-box">
+          <% otp.toString().split('').forEach(function(digit){ %>
+            <span class="otp-digit"><%= digit %></span>
+          <% }); %>
+        </div>
+
+        <p>
+          Please enter this OTP within <strong><%= expirationMinutes %> minutes</strong>
+          of receiving this email to complete your verification process.
+        </p>
+
+        <p class="support">
+          If you did not create an account with us, please ignore this email or
+          contact our support team.<br />
+          <a href="mailto:support@ph-healthcare-system.com">support@ph-healthcare-system.com</a>
+        </p>
+
+        <p class="note">Note: This is a system generated message. Do not reply.</p>
+
+        <div class="regards">
+          Best Regards,<br />
+          <strong>Team PH Healthcare</strong>
+        </div>
+
+        <div class="divider"></div>
+      </div>
+
+      <div class="footer">
+        <div class="brand">🏥 PH Healthcare System</div>
+        <p>
+          &copy; <%= new Date().getFullYear() %>
+          <a href="https://ph-healthcare-system.com">ph-healthcare-system.com</a>
+          &nbsp;|&nbsp;
+          <a href="mailto:hello@ph-healthcare-system.com">hello@ph-healthcare-system.com</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
