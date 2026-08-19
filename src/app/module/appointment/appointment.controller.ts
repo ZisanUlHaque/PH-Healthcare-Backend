@@ -6,10 +6,23 @@ import { AppointmentServices } from "./appointment.service";
 
 const bookAppointment = catchAsync(async (req: Request, res: Response) => {
     const result = await AppointmentServices.bookAppointment()
+    console.log(result);
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "User profile fetched successfully",
+        message: "Book Appointment successfully",
+        data: result,
+    });
+});
+
+const bookAppointmentCallback = catchAsync(async (req: Request, res: Response) => {
+    console.log(req.query, "req.query");
+    const result =  AppointmentServices.bookAppointmentCallback()
+    console.log(result);
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Book Appointment successfully",
         data: result,
     });
 });
@@ -17,4 +30,5 @@ const bookAppointment = catchAsync(async (req: Request, res: Response) => {
 
 export const AppointmentController = {
     bookAppointment,
+    bookAppointmentCallback
 }
