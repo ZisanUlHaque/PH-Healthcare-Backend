@@ -260,21 +260,21 @@ const cancelAppointment = async (payload: any) => {
 		});
 
 		if (!existingAppointment) {
-			throw new Error("Appointment does not exists");
+			throw new Error("Appointment Does Not Exists");
 		}
 
 		if (
-			existingAppointment?.status === "ONGOING" ||
-			existingAppointment?.status === "COMPLETED"
+			existingAppointment.status === "ONGOING" ||
+			existingAppointment.status === "COMPLETED"
 		) {
-			throw new Error("Appointment ONGOING or COMPLETED");
+			throw new Error("Appointment Ongoing or Completed");
 		}
 
-		if (existingAppointment?.status === "CANCELED") {
-			throw new Error("Appointment Already CANCELED");
+		if (existingAppointment.status === "CANCELED") {
+			throw new Error("Appointment Already Cancelled");
 		}
 
-		const updateAppointment = await tx.apointment.update({
+		const updatedAppointment = await tx.apointment.update({
 			where: {
 				id: existingAppointment.id,
 			},
@@ -290,7 +290,7 @@ const cancelAppointment = async (payload: any) => {
 		}
 
 		const bkashRefundPaymentResponse = await fetch(
-			`${config.bkash_base_url}/v2/tokenized-checkout/refund/payment/transaction`,
+			`${config.bkash_base_url}/tokenized/checkout/payment/refund`,
 			{
 				method: "POST",
 				headers: {
@@ -300,34 +300,33 @@ const cancelAppointment = async (payload: any) => {
 					"X-App-Key": config.bkash_app_key,
 				},
 				body: JSON.stringify({
-					paymentId: existingAppointment.payment?.bkashPaymentId,
-					trxId: existingAppointment.payment?.bkashTrxId,
-					refundAmount: existingAppointment.payment?.amount,
+					paymentID: existingAppointment.payment?.bkashPaymentId,
+					trxID: existingAppointment.payment?.bkashTrxId,
+					amount: existingAppointment.payment?.amount.toString(),
 					sku: "Appointment Cancellation",
-					reason: "Patient Cancelled the appointment",
+					reason: "Patient Cancelled The Appointment",
 				}),
 			},
 		);
 
 		const bkashRefundPaymentResult = await bkashRefundPaymentResponse.json();
-		console.log({ bkashRefundPaymentResult });
 
 		const updatedPayment = await tx.payment.update({
 			where: {
 				appointmentId: existingAppointment.id,
 			},
 			data: {
-				refundTrxId: bkashRefundPaymentResult.refundTrxId,
+				refundTrxId: bkashRefundPaymentResult.refundTrxID,
 				refundedAt: bkashRefundPaymentResult.completedTime,
-				refundAmount: bkashRefundPaymentResult.refundAmount,
-				refundReason: bkashRefundPaymentResult.reason,
+				refundAmount: bkashRefundPaymentResult.amount,
+				refundReason: "Patient Cancelled The Appointment",
 				status: PaymentStatus.REFUNDED,
 				gatewayResponse: bkashRefundPaymentResult,
 			},
 		});
 
 		return {
-			appointment: updateAppointment,
+			appointment: updatedAppointment,
 			payment: updatedPayment,
 		};
 	});
