@@ -1,6 +1,8 @@
 import { UploadApiResponse } from "cloudinary";
 import { cloudinary } from "../../lib/cloudinary";
 import { prisma } from "../../lib/prisma";
+import httpStatus from "http-status";
+import { AppError } from "../../utils/AppError";
 
 const uploadProfieImage = async (buffer: Buffer, userId: string) => {
 	// const cloudinaryResult = cloudinary.uploader
@@ -43,7 +45,7 @@ const uploadProfieImage = async (buffer: Buffer, userId: string) => {
 					}
 
 					if (!result) {
-						return reject(new Error("Upload failed: Result is undefined"));
+						return reject(new AppError(httpStatus.BAD_GATEWAY, "Upload failed: Result is undefined"));
 					}
 					resolve(result);
 				})

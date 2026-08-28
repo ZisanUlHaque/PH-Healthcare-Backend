@@ -35,7 +35,7 @@ const applyAsDoctor = async (
   });
 
   if (isUserExists) {
-    throw new Error("User Already Exists With This Email");
+    throw new AppError(httpStatus.CONFLICT, "User Already Exists With This Email");
   }
 
   const resumeUploadResult = await new Promise<UploadApiResponse>(
@@ -52,7 +52,7 @@ const applyAsDoctor = async (
             }
 
             if (!result) {
-              return reject(new Error("No result returned from Cloudinary"));
+              return reject(new AppError(httpStatus.BAD_GATEWAY, "No result returned from Cloudinary"));
             }
 
             resolve(result);
@@ -79,7 +79,7 @@ const applyAsDoctor = async (
               }
 
               if (!result) {
-                return reject(new Error("No result returned from Cloudinary"));
+                return reject(new AppError(httpStatus.BAD_GATEWAY, "No result returned from Cloudinary"));
               }
 
               resolve(result);
@@ -170,11 +170,11 @@ const verifyDoctorEmail = async (payload: IVerifyDoctorEmailPayload) => {
   });
 
   if (!existingUser) {
-    throw new Error("Doctor Application Not Found. Please Apply Again");
+    throw new AppError(httpStatus.NOT_FOUND, "Doctor Application Not Found. Please Apply Again");
   }
 
   if (existingUser?.emailVerified) {
-    throw new Error("Email ALready Verified");
+    throw new AppError(httpStatus.CONFLICT, "Email ALready Verified");
   }
 
   const otpKey = `doctor-application-otp:${email}`;
@@ -182,11 +182,11 @@ const verifyDoctorEmail = async (payload: IVerifyDoctorEmailPayload) => {
   const redisOtp = await redisClient.get(otpKey);
 
   if (!redisOtp) {
-    throw new Error("Invalid OTP");
+    throw new AppError(httpStatus.BAD_REQUEST, "Invalid OTP");
   }
 
   if (redisOtp !== otp) {
-    throw new Error("OTP Does not match");
+    throw new AppError(httpStatus.BAD_REQUEST, "OTP Does not match");
   }
 
   await redisClient.del(otpKey);
