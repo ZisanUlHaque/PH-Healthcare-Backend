@@ -347,6 +347,7 @@ const bookAppointmentCallback = async (query: Record<string, any>) => {
 
         // 3nd person joining time => startDateTime = 2026-08-25T15:40:00.436Z => 3:00 PM
         // serial number (3) - 1 * 20 => 40 mintes
+        
 
         const joiningTime = addMinutes(
           appointment.schedule.startDateTime,
