@@ -507,7 +507,7 @@ const getAvailableDoctorByTodaysSchedule = async (query: IQuery) => {
 			qualifications: true,
 			experienceYears: true,
 			bio: true,
-			consultationFee: true,
+			consultionFee: true,
 			createdAt: true,
 			schedules: {
 				where: {
@@ -596,7 +596,7 @@ const getAllDoctorsListPublic = async (query: IQuery) => {
 			qualifications: true,
 			experienceYears: true,
 			bio: true,
-			consultationFee: true,
+			consultionFee: true,
 			createdAt: true,
 		},
 	});
@@ -632,7 +632,7 @@ const getSingleDoctorPublicProfile = async (doctorId: string) => {
 			qualifications: true,
 			experienceYears: true,
 			bio: true,
-			consultationFee: true,
+			consultionFee: true,
 			createdAt: true,
 		},
 	});

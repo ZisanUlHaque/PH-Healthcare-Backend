@@ -12,7 +12,7 @@ export interface IApplyAsDoctorPayload {
         qualifications: string;
         experienceYears: number;
         bio?: string;
-        consultationFee?: number;
+        consultionFee?: number;
         contactNumber?: string;
     };
 }
@@ -33,6 +33,6 @@ export interface IApproveDoctorPayload {
 export interface IUpdateDoctorProfilePayload {
     address?: string;
     bio?: string;
-    consultationFee?: number;
+    consultionFee?: number;
     contactNumber?: string;
 }

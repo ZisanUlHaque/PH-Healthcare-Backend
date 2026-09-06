@@ -33,7 +33,7 @@ export const ApplyAsDoctorValidationZodSchema = z.object({
       .optional(),
 
     // Handles converting incoming FormData strings like "150.00" into a float number
-    consultationFee: z
+    consultionFee: z
       .number()
       .min(0, "Consultation fee cannot be negative")
       .optional(),
@@ -58,7 +58,7 @@ export const UpdateDoctorProfileValidationZodSchema = z.object({
     .max(1000, "Bio cannot exceed 1000 characters")
     .optional(),
 
-  consultationFee: z
+  consultionFee: z
     .number()
     .min(0, "Consultation fee cannot be negative")
     .optional(),
