@@ -7,10 +7,10 @@ import {
 import config from "../../config";
 import { getBkashIdToken } from "../../lib/bkash";
 import { prisma } from "../../lib/prisma";
-import { RequestUser } from "../../middleware/checkAuth";
+import type { RequestUser } from "../../middleware/checkAuth";
 import httpStatus from "http-status";
 import { AppError } from "../../utils/AppError";
-import {
+import type {
   IBookAppointmentPayload,
   ICancelAppointmentPayload,
   IPayAppointmentPayload,
@@ -19,8 +19,8 @@ import {
 import { addMinutes, isBefore, isSameDay, subHours } from "date-fns";
 import PDFDocument from "pdfkit";
 import { transporter } from "../../lib/nodemailer";
-import { AppointmentWhereInput } from "../../../generated/prisma/models";
-import { IQuery } from "../../../interfaces";
+import type { AppointmentWhereInput } from "../../../generated/prisma/models";
+import type { IQuery } from "../../../interfaces";
 
 const bookAppointment = async (
   payload: IBookAppointmentPayload,

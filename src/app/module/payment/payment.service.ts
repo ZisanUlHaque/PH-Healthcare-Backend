@@ -1,7 +1,7 @@
-import { PaymentWhereInput } from "../../../generated/prisma/models";
-import { IQuery } from "../../../interfaces";
+import type { PaymentWhereInput } from "../../../generated/prisma/models";
+import type { IQuery } from "../../../interfaces";
 import { prisma } from "../../lib/prisma";
-import { RequestUser } from "../../middleware/checkAuth";
+import type { RequestUser } from "../../middleware/checkAuth";
 import httpStatus from "http-status";
 import { AppError } from "../../utils/AppError";
 import { Role } from "../../../generated/prisma/enums";

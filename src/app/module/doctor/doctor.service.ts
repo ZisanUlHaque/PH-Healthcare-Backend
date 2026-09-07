@@ -14,16 +14,16 @@ import { redisClient } from "../../lib/redis";
 import path from "path";
 import ejs from "ejs";
 import { transporter } from "../../lib/nodemailer";
-import {
+import type {
   IApplyAsDoctorPayload,
   IApproveDoctorPayload,
   IUpdateDoctorProfilePayload,
   IVerifyDoctorEmailPayload,
 } from "./doctor.interface";
-import { RequestUser } from "../../middleware/checkAuth";
+import type { RequestUser } from "../../middleware/checkAuth";
 import { AppError } from "../../utils/AppError";
-import { IQuery } from "../../../interfaces";
-import { DoctorWhereInput } from "../../../generated/prisma/models";
+import type { IQuery } from "../../../interfaces";
+import type { DoctorWhereInput } from "../../../generated/prisma/models";
 import { addDays, startOfDay } from "date-fns";
 
 const applyAsDoctor = async (
