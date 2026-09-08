@@ -65,11 +65,17 @@ export const auth = (...requiredRoles: Role[]) => {
 		});
 
 		if (!user) {
-			throw new AppError(httpStatus.UNAUTHORIZED, "User not found. Please log in again.");
+			throw new AppError(
+				httpStatus.UNAUTHORIZED,
+				"User not found. Please log in again.",
+			);
 		}
 
 		if (user.status === "BLOCKED") {
-			throw new AppError(httpStatus.FORBIDDEN, "Your account has been blocked. Please contact support.");
+			throw new AppError(
+				httpStatus.FORBIDDEN,
+				"Your account has been blocked. Please contact support.",
+			);
 		}
 
 		req.user = {

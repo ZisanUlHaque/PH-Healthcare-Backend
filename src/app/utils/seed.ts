@@ -22,7 +22,10 @@ export const seedSuperAdmin = async () => {
 		const password = config.super_admin_password;
 
 		if (!name || !email || !password) {
-			throw new AppError(httpStatus.INTERNAL_SERVER_ERROR, "Super admin Name, Admin , Email missing");
+			throw new AppError(
+				httpStatus.INTERNAL_SERVER_ERROR,
+				"Super admin Name, Admin , Email missing",
+			);
 		}
 		const hashPassword = await bcrypt.hash(
 			password,
@@ -145,16 +148,16 @@ export const seedTesterDoctor = async () => {
 				role: Role.DOCTOR,
 				needPasswordChange: false,
 				emailVerified: true,
-				doctor : {
-					create : {
+				doctor: {
+					create: {
 						email,
 						name,
-						experienceYears : 5,
-						licenseNumber : "UCU258",
-						qualifications : "MBBS",
-						specialization : "Brain",
-					}
-				}
+						experienceYears: 5,
+						licenseNumber: "UCU258",
+						qualifications: "MBBS",
+						specialization: "Brain",
+					},
+				},
 			},
 		});
 

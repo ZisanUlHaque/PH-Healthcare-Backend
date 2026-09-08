@@ -9,49 +9,49 @@ import { UpdateDoctorProfileValidationZodSchema } from "./doctor.validation";
 const router = Router();
 
 router.post(
-  "/apply-as-doctor",
-  // validateRequest(UserValidation.ResetPasswordZodSchema),
-  upload.fields([
-    {
-      name: "resume",
-      maxCount: 1,
-    },
+	"/apply-as-doctor",
+	// validateRequest(UserValidation.ResetPasswordZodSchema),
+	upload.fields([
+		{
+			name: "resume",
+			maxCount: 1,
+		},
 
-    {
-      name: "additionalFiles",
-      maxCount: 10,
-    },
-  ]),
-  DoctorController.applyAsDoctor,
+		{
+			name: "additionalFiles",
+			maxCount: 10,
+		},
+	]),
+	DoctorController.applyAsDoctor,
 );
 
 router.post(
-  "/apply-as-doctor/verify-email",
-  DoctorController.verifyDoctorEmail,
+	"/apply-as-doctor/verify-email",
+	DoctorController.verifyDoctorEmail,
 );
 router.patch(
-  "/update-my-profile",
-  auth(Role.DOCTOR),
-  validateRequest(UpdateDoctorProfileValidationZodSchema),
-  DoctorController.updateDoctorProfile,
+	"/update-my-profile",
+	auth(Role.DOCTOR),
+	validateRequest(UpdateDoctorProfileValidationZodSchema),
+	DoctorController.updateDoctorProfile,
 );
 
 router.post(
-  "/approve-doctor",
-  auth(Role.ADMIN, Role.SUPER_ADMIN),
-  DoctorController.approveDoctor,
+	"/approve-doctor",
+	auth(Role.ADMIN, Role.SUPER_ADMIN),
+	DoctorController.approveDoctor,
 );
 
 router.get(
-  "/all-doctors",
-  auth(Role.ADMIN, Role.SUPER_ADMIN),
-  DoctorController.getAllDoctors,
+	"/all-doctors",
+	auth(Role.ADMIN, Role.SUPER_ADMIN),
+	DoctorController.getAllDoctors,
 );
 
 // Public doctor-discovery routes (no auth) — meant for patients browsing before login.
 router.get(
-  "/public/available-today",
-  DoctorController.getAvailableDoctorByTodaysSchedule,
+	"/public/available-today",
+	DoctorController.getAvailableDoctorByTodaysSchedule,
 );
 
 router.get("/public/all-doctors", DoctorController.getAllDoctorsListPublic);

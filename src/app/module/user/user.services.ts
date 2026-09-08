@@ -45,7 +45,12 @@ const uploadProfieImage = async (buffer: Buffer, userId: string) => {
 					}
 
 					if (!result) {
-						return reject(new AppError(httpStatus.BAD_GATEWAY, "Upload failed: Result is undefined"));
+						return reject(
+							new AppError(
+								httpStatus.BAD_GATEWAY,
+								"Upload failed: Result is undefined",
+							),
+						);
 					}
 					resolve(result);
 				})
