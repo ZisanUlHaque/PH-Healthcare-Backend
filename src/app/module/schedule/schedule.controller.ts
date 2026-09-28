@@ -69,7 +69,7 @@ const updateSchedule = catchAsync(async (req: Request, res: Response) => {
 	const payload = req.body;
 	const user = req.user!;
 
-	const result = await ScheduleServices.updatedSchedule(
+	const result = await ScheduleServices.updateSchedule(
 		scheduleId,
 		payload,
 		user,

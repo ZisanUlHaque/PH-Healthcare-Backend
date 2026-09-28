@@ -2,11 +2,11 @@ import { addDays, differenceInMinutes, isAfter, isSameDay, startOfDay } from "da
 import httpStatus from "http-status";
 import { ScheduleStatus } from "../../../generated/prisma/enums";
 import { ScheduleWhereInput } from "../../../generated/prisma/models";
-import { IQuery } from "../../interfaces";
 import { prisma } from "../../lib/prisma";
 import { RequestUser } from "../../middleware/checkAuth";
 import { AppError } from "../../utils/AppError";
 import { ICreateSchedulePayload, IUpdateSchedulePayload } from "./schedule.interface";
+import { IQuery } from "../../../interfaces";
 
 
 const createSchedule = async (payload : ICreateSchedulePayload , user : RequestUser) => {

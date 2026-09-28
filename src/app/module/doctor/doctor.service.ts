@@ -12,7 +12,6 @@ import {
 } from "../../../generated/prisma/enums";
 import { DoctorWhereInput } from "../../../generated/prisma/models";
 import config from "../../config";
-import { IQuery } from "../../interfaces";
 import { cloudinary } from "../../lib/cloudinary";
 import { transporter } from "../../lib/nodemailer";
 import { prisma } from "../../lib/prisma";
@@ -26,6 +25,7 @@ import {
   IVerifyDoctorEmailPayload,
 } from "./doctor.interface";
 import generateRandomPassword from "../../utils/randomPassword";
+import { IQuery } from "../../../interfaces";
 
 const applyAsDoctor = async (
   payload: IApplyAsDoctorPayload,

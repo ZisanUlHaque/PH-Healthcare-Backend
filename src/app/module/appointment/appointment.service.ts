@@ -115,14 +115,14 @@ const bookAppointment = async (
 			);
 		}
 
-		if (!schedule.doctor.consultionsFee) {
+		if (!schedule.doctor.consultationFee) {
 			throw new AppError(
 				httpStatus.BAD_REQUEST,
 				"Doctor Has Not Set A Consultation Fee Yet",
 			);
 		}
 
-		const amount = schedule.doctor.consultionsFee.toString();
+		const amount = schedule.doctor.consultationFee.toString();
 
 		const appointment = await tx.appointment.create({
 			data: {
@@ -225,14 +225,14 @@ const payAppointment = async (
 	//   throw new Error(`Appointment is Already ${appointmentStatus.toLowerCase}`);
 	// }
 
-	if (!existingAppointment.schedule.doctor.consultionsFee) {
+	if (!existingAppointment.schedule.doctor.consultationFee) {
 		throw new AppError(
 			httpStatus.BAD_REQUEST,
 			"Doctor Has Not Set A Consultation Fee Yet",
 		);
 	}
 
-	const amount = existingAppointment.schedule.doctor.consultionsFee.toString();
+	const amount = existingAppointment.schedule.doctor.consultationFee.toString();
 
 	const bkashIdToken = await getBkashIdToken();
 
