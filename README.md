@@ -4,6 +4,7 @@ REST API for a doctor-appointment platform: patients book consultations, doctors
 
 **Stack:** Node.js · Express 5 · TypeScript · Prisma 7 · PostgreSQL · JWT auth
 
+
 ## Where the project stands today
 
 This is an early build, not the finished product. Right now the only working feature is authentication — a patient can register, log in, and fetch their own profile. Appointments, doctor schedules, payments, and everything else in [`Project Requirements.md`](./Project%20Requirements.md) is planned but not built yet.
