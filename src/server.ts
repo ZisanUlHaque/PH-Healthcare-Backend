@@ -1,9 +1,10 @@
 import app from "./app";
 import config from "./app/config";
-import { deleteUnverifiedDoctor } from "./app/lib/corn";
+import { deleteUnverifiedDoctor, reindexDoctorEmbeddings } from "./app/lib/corn";
 import { transporter } from "./app/lib/nodemailer";
 import { prisma } from "./app/lib/prisma";
 import { redisClient } from "./app/lib/redis";
+import { reindexAllDoctors } from "./app/module/chat/chat.indexer";
 import {
 	seedSuperAdmin,
 	seedTesterAdmin,
@@ -26,8 +27,10 @@ const main = async () => {
 		await seedTesterAdmin();
 		await seedTesterDoctor();
 		await seedSuperAdmin();
+		// await reindexAllDoctors();
 
 		await deleteUnverifiedDoctor();
+		await reindexDoctorEmbeddings()
 
 		app.listen(PORT, () => {
 			console.log(`Server is running on port ${PORT}`);

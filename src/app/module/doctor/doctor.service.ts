@@ -26,6 +26,8 @@ import {
 } from "./doctor.interface";
 import generateRandomPassword from "../../utils/randomPassword";
 import { IQuery } from "../../../interfaces";
+import { upsertDoctorEmbedding } from "../chat/chat.indexer";
+import { error } from "console";
 
 const applyAsDoctor = async (
   payload: IApplyAsDoctorPayload,
@@ -296,6 +298,8 @@ const approveDoctor = async (
     },
   });
 
+  syncDoctorEmbedding(updatedDoctor.id);
+  
   const tempatePath = path.join(
     process.cwd(),
     `src/app/templates/${
@@ -442,6 +446,8 @@ const updateDoctorProfile = async (
     where: { id: existingDoctor.id },
     data: payload,
   });
+
+  syncDoctorEmbedding(updatedDoctor.id);
 
   return updatedDoctor;
 };
@@ -652,6 +658,12 @@ const getSingleDoctorPublicProfile = async (doctorId: string) => {
 
   return doctor;
 };
+
+const syncDoctorEmbedding = (doctorId: string) =>{
+  upsertDoctorEmbedding(doctorId).catch((error) =>{
+    console.error("Chat: failed to index doctor", error)
+  })
+}
 
 export const DoctorServices = {
   applyAsDoctor,
